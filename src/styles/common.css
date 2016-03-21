@@ -1,0 +1,11 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    height: 100%;
+    /*top: 100px;*/
+}
+
+/* Put your css in here */
+section {
+    min-height: 300px;
+}
+
