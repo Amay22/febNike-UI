@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="nike">
+<head>
+  <meta charset="UTF-8">
+  <title>Nike Flix</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+  <!-- bower:css -->
+  <!-- endinject -->
+  <!-- vendor.min:css -->
+  <!-- endinject -->
+
+  <!-- inject:css -->
+  <!-- endinject -->
+  <!-- app.min:css -->
+  <!-- endinject -->
+</head>
+<body>
+  <header ng-controller="HeaderController as headerCtrl" ng-include="'views/header.tmpl.html'"></header>
+  <section>
+    <div class="container-fluid" ng-view></div>
+  </section>
+  <footer ng-include="'views/footer.tmpl.html'"></footer>
+
+<!-- bower:js -->
+<!-- endinject -->
+<!-- vendor.min:js -->
+<!-- endinject -->
+
+<!-- inject:js -->
+<!-- endinject -->
+<!-- app.min:js -->
+<!-- endinject -->
+</body>
+</html>
