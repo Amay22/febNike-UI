@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row-fluid">
+        <div class="col-md-12">
+            <div class="col-md-5">
+                <div class="area">
+                    <form class="form-horizontal" ng-submit="userCtrl.login()">
+                        <div class="heading">
+                            <h4 class="form-heading">Login</h4>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Email</label>
+                            <div class="controls">
+                                <input type="email" class="form-control" id="email" placeholder="Email" ng-model="userCtrl.info.email" required>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Password</label>
+                            <div class="controls">
+                                <input type="password" class="form-control" id="password"
+                           placeholder="Password" ng-model="userCtrl.info.password" ng-minlength="8" required>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button class="btn btn-success" type="submit">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
