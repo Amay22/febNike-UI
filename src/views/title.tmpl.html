@@ -1,0 +1,76 @@
+<h1>Titles</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <form class="form-horizontal" ng-submit="titleCtrl.searchTitle()">
+                <div class="input-group col-sm-6">
+                    <input type="text" placeholder="Part of a Title ..." class="form-control" ng-model="titleCtrl.searchTitleInput" required/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </span>
+                </div>
+            <form>
+        </div>
+
+        <div class="col-md-1">
+          <button ng-click="titleCtrl.getTopRated()" class="btn btn-success">Top Rated</button>
+        </div>
+
+        <div class="col-md-2">
+            <select class="form-control" ng-change="titleCtrl.filterTitles('year')" ng-model="titleCtrl.selectedYear">
+                <option value disabled selected>Year</option>
+                <option ng-repeat="year in titleCtrl.filterYears" value="{{year}}">{{year}}</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <select class="form-control" ng-change="titleCtrl.filterTitles('type')" ng-model="titleCtrl.selectedType">
+                <option value disabled selected>Type</option>
+                <option ng-repeat="type in titleCtrl.filterTypes" value="{{type}}">{{type}}</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <select class="form-control" ng-change="titleCtrl.filterTitles('genre')" ng-model="titleCtrl.selectedGenre">
+                <option value disabled selected>Genre</option>
+                <option ng-repeat="genre in titleCtrl.filterGenres" value="{{genre}}">{{genre}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Poster</th>
+                  <th>Title</th>
+                  <th><button class="sort-button" ng-click="titleCtrl.sortTitle('Year')"><span class="glyphicon glyphicon-sort">Year</span></th>
+                  <th>Runtime</th>
+                  <th>Genre</th>
+                  <th>Director</th>
+                  <th>Actors</th>
+                  <th>Writer</th>
+                  <th><button class="sort-button" ng-click="titleCtrl.sortTitle('imdbrating')"><span class="glyphicon glyphicon-sort">imdb Rating</span></th>
+                  <th><button class="sort-button" ng-click="titleCtrl.sortTitle('imdbvotes')"><span class="glyphicon glyphicon-sort">imdb Votes</span></th>
+                  <th>Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="title in titleCtrl.titles">
+                  <td><a href="{{'http://www.imdb.com/title/' + title.imdbId}}"><img height="100" width="100" ng-src="{{title.poster}}"></img></a></td>
+                  <td><a href="{{'#/title/' + title.id}}">{{title.title}}</a></td>
+                  <td>{{title.year}}</td>
+                  <td>{{title.runtime}} min.</td>
+                  <td>{{title.genre}}</td>
+                  <td>{{title.director}}</td>
+                  <td>{{title.actors}}</td>
+                  <td>{{title.writer}}</td>
+                  <td>{{title.imdbRating}}</td>
+                  <td>{{title.imdbVotes}}</td>
+                  <td>{{title.type}}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+</div>
