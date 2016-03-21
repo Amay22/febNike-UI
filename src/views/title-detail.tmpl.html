@@ -1,0 +1,85 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+          <img height="400" width="250" ng-src="{{titleDetailCtrl.title.poster}}"></img>
+        </div>
+        <div class="col-md-9">
+          <h1><a href="{{'http://www.imdb.com/title/' + titleDetailCtrl.title.imdbId}}">{{titleDetailCtrl.title.title}} ({{titleDetailCtrl.title.year}} - {{titleDetailCtrl.title.type}})</a></h1>
+        </div>
+        <div class="col-md-9">
+          Released: {{titleDetailCtrl.title.released}} &emsp;&emsp;&emsp;&emsp;&emsp;
+          Runtime: {{titleDetailCtrl.title.runtime}} min.
+        </div>
+        <div class="col-md-9">
+          Directors: {{titleDetailCtrl.title.director}}
+        </div>
+        <div class="col-md-9">
+          Actors: {{titleDetailCtrl.title.actors}}
+        </div>
+        <div class="col-md-9">
+          Writer: {{titleDetailCtrl.title.writer}}
+        </div>
+        <div class="col-md-9">
+          Genre: {{titleDetailCtrl.title.genre}}
+        </div>
+        <div class="col-md-9">
+          imdb Rating: {{titleDetailCtrl.title.imdbRating}}
+        </div>
+        <div class="col-md-9">
+          imdb Votes: {{titleDetailCtrl.title.imdbVotes}}
+        </div>
+        <div class="col-md-9">
+          imdb Rating: {{titleDetailCtrl.title.imdbRating}}
+        </div>
+        <div class="col-md-9">
+          imdbRating: {{titleDetailCtrl.title.imdbRating}}
+        </div>
+        <div class="col-md-9">
+          MetaScore: {{titleDetailCtrl.title.metascore}}
+        </div>
+        <div class="col-md-9">
+          Country: {{titleDetailCtrl.title.country}}
+        </div>
+        <div class="col-md-9">
+          Language: {{titleDetailCtrl.title.language}}
+        </div>
+        <div class="col-md-9" ng-show="titleDetailCtrl.isLoggedin()">
+          <h4>
+              <div>Rate it: &emsp;&emsp;<uib-rating ng-model="titleDetailCtrl.userRated" ng-change="titleDetailCtrl.addRating()" max="10" state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'"></uib-rating></div>
+          </h4>
+        </div>
+        <div class="col-md-9">
+          <h6>
+              <div>Average Rating: &emsp;&emsp; <uib-rating read-only="true" ng-model="titleDetailCtrl.averageRating" max="10" state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'"></uib-rating>
+              </div>
+          </h6>
+        </div>
+        <div class="col-md-9" ng-show="titleDetailCtrl.isLoggedin()">
+            <form class="form-horizontal" ng-submit="titleDetailCtrl.addComment()">
+                <div class="input-group col-sm-12">
+                    <input type="text" placeholder="Comment on {{titleDetailCtrl.title.title}}" class="form-control" ng-model="titleDetailCtrl.addedComment" required/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="submit">Comment</button>
+                    </span>
+                </div>
+            </form>
+          </div>
+        </div>
+        <br>
+         <div class="row">
+        <div class="table-responsive">
+            <table  style="text-align:center;" class="table table-striped">
+              <thead>
+                <tr>
+                  <th style="text-align:center;">Comments</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="title in titleDetailCtrl.allComments">
+                <td>{{title.comments}}</td>
+              </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>
