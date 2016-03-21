@@ -1,0 +1,8 @@
+node_modules/
+bower_components/
+build/
+.sass-cache/
+.idea/
+.tmp/
+.dist/
+.DS_Store
