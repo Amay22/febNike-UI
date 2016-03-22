@@ -15,10 +15,8 @@
             .then(function(data) {
                 $http.defaults.headers.common.Authorization = 'Bearer ' + data.token;
                 $window.sessionStorage.setItem('currentUser',  data.token);
-                return userService.getUserByEmail(userCtrl.info.email);
-            })
-            .then(function(data) {
                 $window.sessionStorage.setItem('currentUserId',  data.id);
+                $window.sessionStorage.setItem('currentUserRole',  data.role);
                 $location.path('/title');
             }).catch(function(error) {
                 alert('Invalid Username Or Password');

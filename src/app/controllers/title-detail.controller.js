@@ -69,5 +69,13 @@
     titleDetailCtrl.isLoggedin = function(){
         return $window.sessionStorage.getItem('currentUser') !== null;
     };
+
+    function successFn (data) {
+        titleDetailCtrl.title = data;
+    }
+
+    function errorFn (error) {
+        console.log(error);
+    }
   }
 })();

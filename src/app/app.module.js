@@ -3,7 +3,16 @@
 
   angular
     .module('nike', ['ngRoute', 'ui.bootstrap'])
-    .config(nikeConfig);
+    .config(nikeConfig)
+    .run(function($rootScope, $location, $window){
+       return $rootScope.$on('$routeChangeStart', function(event, next, current) {
+          if($location.path() === '/user' && $window.sessionStorage.getItem('currentUser') !== null){
+              $location.path('/title');
+          }else if($location.path() === '/title-edit' && $window.sessionStorage.getItem('currentRole') !== 'admin'){
+              $location.path('/title');
+          }
+        });
+  });
 
   nikeConfig.$inject = ['$routeProvider'];
 
@@ -23,11 +32,6 @@
         templateUrl: 'views/title-detail.tmpl.html',
         controller: 'TitleDetailController',
         controllerAs: 'titleDetailCtrl'
-      })
-      .when('/admin', {
-        templateUrl: 'views/admin.tmpl.html',
-        controller: 'TitleController',
-        controllerAs: 'titleCtrl'
       })
       .otherwise({
         redirectTo: '/title'

@@ -5,9 +5,9 @@
     .module('nike')
     .controller('TitleController', TitleController);
 
-  TitleController.$inject = ['titleService','$location', 'ratingService'];
+  TitleController.$inject = ['titleService','$location', 'ratingService', '$window'];
 
-  function TitleController (titleService, $location , ratingService) {
+  function TitleController (titleService, $location , ratingService, $window) {
     var titleCtrl = this;
 
     titleCtrl.filterTypes = [];
@@ -43,6 +43,11 @@
         ratingService.getTopRated().then(successFn, errorFn)
     }
 
+    titleCtrl.isAdmin = function(){
+        return $window.sessionStorage.getItem('currentUserRole') === 'admin';
+    };
+
+    titleCtrl.deleteTitle = function(id){};
 
     function successFn (data) {
         titleCtrl.titles = data;

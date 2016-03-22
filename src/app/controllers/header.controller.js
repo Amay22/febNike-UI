@@ -16,6 +16,7 @@
     headerCtrl.logout = function(){
         $window.sessionStorage.removeItem('currentUser');
         $window.sessionStorage.removeItem('currentUserId');
+        $window.sessionStorage.removeItem('currentUserRole');
     };
   }
 })();
