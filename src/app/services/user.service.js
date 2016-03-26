@@ -21,7 +21,7 @@
 
     userServe.getUserByEmail = function(email){
         var dot = email.lastIndexOf('.');
-        return $http.get(CONFIG.API_END_POINT + '/users/email/' + email.substring(0,dot) + '/' + email.substring(dot+1))
+        return $http.get(CONFIG.API_END_POINT + '/users/email/' + email + '/')
             .then(successFn, errorFn);
     }
 

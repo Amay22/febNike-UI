@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('nike', ['ngRoute', 'ui.bootstrap'])
+    .module('nike', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
     .config(nikeConfig)
     .run(function($rootScope, $location, $window){
        return $rootScope.$on('$routeChangeStart', function(event, next, current) {

@@ -1,8 +1,63 @@
 <h1>Titles</h1>
 <div class="container">
-    <div class="row">
-        <a ng-href="#" ng-show="titleCtrl.isAdmin()">Add Title</a>
+    <div class="row" ng-show="titleCtrl.isAdmin()">
+        <script type="text/ng-template" id="AddTitleModal">
+        <div class="modal-header">
+            <h3 class="modal-title">Add Tilte <a ng-href="http://www.imdb.com/title/{{AddTitleCtrl.title.imdbID}}" target="_blank">{{AddTitleCtrl.title.Title}} ({{AddTitleCtrl.title.Year}}) - {{AddTitleCtrl.title.Type}}</a></h3>
+        </div>
+        <div class="modal-body">
+            <div class="col-sm-4">
+              <a ng-href="http://www.imdb.com/title/{{AddTitleCtrl.title.imdbID}}" target="_blank"><img height="300" width="180" ng-src="{{AddTitleCtrl.title.Poster}}"></img></a>
+            </div>
+            <div class="col-sm-8">
+              <table class="table table-striped">
+                  <tr>
+                    <th>Actors</th>
+                    <td>{{AddTitleCtrl.title.Actors}}</td>
+                  </tr>
+                  <tr>
+                    <th>Director</th>
+                    <td>{{AddTitleCtrl.title.Director}}</td>
+                  </tr>
+                  <tr>
+                    <th>Writer</th>
+                    <td>{{AddTitleCtrl.title.Writer}}</td>
+                  </tr>
+                  <tr>
+                    <th>Genre</th>
+                    <td>{{AddTitleCtrl.title.Genre}}</td>
+                  </tr>
+                  <tr>
+                    <th>Runtime</th>
+                    <td>{{AddTitleCtrl.title.Runtime}} min.</td>
+
+                  </tr>
+                  <tr>
+                    <th>Plot</th>
+                    <td>{{AddTitleCtrl.title.Plot}}</td>
+                  </tr>
+                  <tr>
+                    <th>imdb Rating</th>
+                    <td>{{AddTitleCtrl.title.imdbRating}}</td>
+                  </tr>
+              </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="AddTitleCtrl.ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="AddTitleCtrl.cancel()">Cancel</button>
+        </div>
+    </script>
+    <form ng-submit="titleCtrl.getTitleIMDB()">
+      <div class="col-xs-3">
+          <input type="text" ng-model="titleCtrl.AddTitle" class="form-control" placeholder="Enter IMDB ID to Add" ng-minlength="4" required>
+      </div>
+      <div class="col-xs-1">
+          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus">Add Title</span></button>
+      </div>
+    </form>
     </div>
+    <br>
     <div class="row">
         <div class="col-md-5">
             <form class="form-horizontal" ng-submit="titleCtrl.searchTitle()">
@@ -56,7 +111,7 @@
                   <th><button class="sort-button" ng-click="titleCtrl.sortTitle('imdbrating')"><span class="glyphicon glyphicon-sort">imdb Rating</span></th>
                   <th><button class="sort-button" ng-click="titleCtrl.sortTitle('imdbvotes')"><span class="glyphicon glyphicon-sort">imdb Votes</span></th>
                   <th>Type</th>
-                  <th ng-show="titleCtrl.isAdmin()">Delete</th>
+                  <th ng-show="titleCtrl.isAdmin()" ng-click="titleCtrl.deleteTitle('id')"">Delete</th>
                 </tr>
               </thead>
               <tbody>

@@ -5,9 +5,9 @@
     .module('nike')
     .controller('TitleController', TitleController);
 
-  TitleController.$inject = ['titleService','$location', 'ratingService', '$window'];
+  TitleController.$inject = ['titleService', 'ratingService', '$window', '$uibModal', '$route'];
 
-  function TitleController (titleService, $location , ratingService, $window) {
+  function TitleController (titleService , ratingService, $window, $uibModal, $route) {
     var titleCtrl = this;
 
     titleCtrl.filterTypes = [];
@@ -47,7 +47,32 @@
         return $window.sessionStorage.getItem('currentUserRole') === 'admin';
     };
 
-    titleCtrl.deleteTitle = function(id){};
+    titleCtrl.deleteTitle = function(id){
+      titleService.removeTitle(id);
+    };
+
+    titleCtrl.getTitleIMDB = function(){
+      titleService.getTitleIMDB(titleCtrl.AddTitle)
+      .then(function(result) {
+          if(result.Response == 'False'){
+            alert('IMDB Retrieval Error: '+result.Error);
+          }else{
+            titleCtrl.open(result);
+          }
+        })
+      .catch(function(error) {
+        console.log(error);
+      });
+    }
+
+
+      titleCtrl.open = function (result) {
+        var modalInstance = $uibModal.open({
+          templateUrl: 'AddTitleModal',
+          controller: 'AddTitleController as AddTitleCtrl',
+          resolve: { title: result}
+        });
+      }
 
     function successFn (data) {
         titleCtrl.titles = data;
